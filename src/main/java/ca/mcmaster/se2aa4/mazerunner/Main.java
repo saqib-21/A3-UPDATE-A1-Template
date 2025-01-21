@@ -36,15 +36,14 @@ public class Main {
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
             String line;
             while ((line = reader.readLine()) != null) {
-                StringBuilder sb = new StringBuilder();
                 for (int idx = 0; idx < line.length(); idx++) {
                     if (line.charAt(idx) == '#') {
-                        sb.append("WALL ");
+                        logger.debug("WALL ");
                     } else if (line.charAt(idx) == ' ') {
-                        sb.append("PASS ");
+                        logger.debug("PASS ");
                     }
                 }
-                logger.info(sb.toString());
+                logger.debug(System.lineSeparator());
             }
         } catch (ParseException e) {
             logger.error("Failed to parse command line arguments", e);
