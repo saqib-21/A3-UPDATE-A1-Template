@@ -29,6 +29,7 @@ public class Main {
                 return;
             }
 
+            
             String inputFile = cmd.getOptionValue("i");
             logger.info("** Starting Maze Runner");
             logger.info("**** Reading the maze from file " + inputFile);
