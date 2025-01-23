@@ -1,8 +1,5 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -29,23 +26,14 @@ public class Main {
                 return;
             }
 
-            
             String inputFile = cmd.getOptionValue("i");
             logger.info("** Starting Maze Runner");
             logger.info("**** Reading the maze from file " + inputFile);
+          // Use the Maze class to load and print the maze
+          Maze maze = new Maze(inputFile);
+          logger.info("**** Maze Loaded Successfully:");
+          maze.printMaze();
 
-            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                for (int idx = 0; idx < line.length(); idx++) {
-                    if (line.charAt(idx) == '#') {
-                        logger.debug("WALL ");
-                    } else if (line.charAt(idx) == ' ') {
-                        logger.debug("PASS ");
-                    }
-                }
-                logger.debug(System.lineSeparator());
-            }
         } catch (ParseException e) {
             logger.error("Failed to parse command line arguments", e);
         } catch (Exception e) {
