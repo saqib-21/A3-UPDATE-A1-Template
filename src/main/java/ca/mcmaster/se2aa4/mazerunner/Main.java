@@ -26,13 +26,33 @@ public class Main {
                 return;
             }
 
+            System.out.println("Logger test");
+
             String inputFile = cmd.getOptionValue("i");
             logger.info("** Starting Maze Runner");
             logger.info("**** Reading the maze from file " + inputFile);
-          // Use the Maze class to load and print the maze
-          Maze maze = new Maze(inputFile);
-          logger.info("**** Maze Loaded Successfully:");
-          maze.printMaze();
+            
+            // Use the Maze class to load and print the maze
+            Maze maze = new Maze(inputFile);
+            logger.info("**** Maze Loaded Successfully:");
+            maze.printMaze();
+
+            // Find and log the entrance
+            int[] entrance = maze.findEntrance();
+            if (entrance != null) {
+                logger.info("Maze entrance found at index  [" + entrance[0] + "," + entrance[1]+ "]");
+            } else {
+                logger.warn("No entrance found in the maze.");
+            }
+
+            // Find and log the exit
+            int[] exit = maze.findExit();
+            if (exit != null) {
+                logger.info("Maze exit found at index [" + exit[0] + "," + exit[1] + "]");
+            } else {
+                logger.warn("No exit found in the maze.");
+            }
+
 
         } catch (ParseException e) {
             logger.error("Failed to parse command line arguments", e);
