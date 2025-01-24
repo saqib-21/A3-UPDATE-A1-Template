@@ -42,7 +42,7 @@ public class MazeRunner {
     // Methods
 
     // Move the MazeRunner forward based on its current direction
-    public void moveForward(char[][] grid) {
+    public boolean moveForward(char[][] grid) {
         int newX = positionX;
         int newY = positionY;
 
@@ -62,7 +62,7 @@ public class MazeRunner {
                 break;
             default:
                 System.out.println("Invalid direction!");
-                return;
+                return false;
         }
 
         // Check if the next position is within bounds and open
@@ -70,8 +70,10 @@ public class MazeRunner {
             // Update position
             positionX = newX;
             positionY = newY;
+            return true;
         } else {
             System.out.println("Cannot move forward! Path is blocked.");
+            return false;
         }
     }
     // Turn the MazeRunner to the left

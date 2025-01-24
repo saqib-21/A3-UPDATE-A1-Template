@@ -56,13 +56,17 @@ public class Main {
             // Create a MazeRunner object at the entrance 
             MazeRunner runner = new MazeRunner(entrance[0], entrance[1], 'E');
             logger.info("**** Maze Runner Created at entrance [" + entrance[0] + "," + entrance[1] + "] facing East");
-            runner.moveForward(maze.getGrid());
-            logger.info("Current State: " + runner.getState());
-            logger.info("**** Maze Runner Moved Forward");
-            runner.moveForward(maze.getGrid());
-            logger.info("**** Maze Runner Moved Forward");
-            logger.info("Current State: " + runner.getState());
+            //runner.moveForward(maze.getGrid());
+            //logger.info("Current State: " + runner.getState());
+            //logger.info("**** Maze Runner Moved Forward");
+            //runner.moveForward(maze.getGrid());
+            //logger.info("**** Maze Runner Moved Forward");
+            //logger.info("Current State: " + runner.getState());
 
+            // Create a MazeSolver object and solve the maze
+            MazeSolver solver = new MazeSolver(maze, runner);
+            solver.solveMaze();
+            logger.info("** End of Maze Runner");
 
         } catch (ParseException e) {
             logger.error("Failed to parse command line arguments", e);
