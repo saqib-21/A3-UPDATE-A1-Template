@@ -42,10 +42,38 @@ public class MazeRunner {
     // Methods
 
     // Move the MazeRunner forward based on its current direction
-    public void moveForward() {
-        // Code to move the MazeRunner forward will go here
-    }
+    public void moveForward(char[][] grid) {
+        int newX = positionX;
+        int newY = positionY;
 
+        // Determine the next position based on the current direction
+        switch (direction) {
+            case 'N': // North
+                newX = positionX - 1;
+                break;
+            case 'E': // East
+                newY = positionY + 1;
+                break;
+            case 'S': // South
+                newX = positionX + 1;
+                break;
+            case 'W': // West
+                newY = positionY - 1;
+                break;
+            default:
+                System.out.println("Invalid direction!");
+                return;
+        }
+
+        // Check if the next position is within bounds and open
+        if (newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length && grid[newX][newY] == ' ') {
+            // Update position
+            positionX = newX;
+            positionY = newY;
+        } else {
+            System.out.println("Cannot move forward! Path is blocked.");
+        }
+    }
     // Turn the MazeRunner to the left
     public void turnLeft(){
         // Code to turn the MazeRunner left will go here
