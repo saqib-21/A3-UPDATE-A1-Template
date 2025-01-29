@@ -25,9 +25,6 @@ public class Main {
                 logger.error("Input file not provided. Use -i option to specify the input file.");
                 return;
             }
-
-            System.out.println("Logger test");
-
             String inputFile = cmd.getOptionValue("i");
             logger.info("** Starting Maze Runner");
             logger.info("**** Reading the maze from file " + inputFile);

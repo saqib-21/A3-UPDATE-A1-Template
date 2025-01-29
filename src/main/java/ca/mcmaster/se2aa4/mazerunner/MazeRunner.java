@@ -47,22 +47,17 @@ public class MazeRunner {
         int newY = positionY;
 
         // Determine the next position based on the current direction
-        switch (direction) {
-            case 'N': // North
-                newX = positionX - 1;
-                break;
-            case 'E': // East
-                newY = positionY + 1;
-                break;
-            case 'S': // South
-                newX = positionX + 1;
-                break;
-            case 'W': // West
-                newY = positionY - 1;
-                break;
-            default:
-                System.out.println("Invalid direction!");
-                return false;
+        if (direction == 'N') { // North
+            newX = positionX - 1;
+        } else if (direction == 'E') { // East
+            newY = positionY + 1;
+        } else if (direction == 'S') { // South
+            newX = positionX + 1;
+        } else if (direction == 'W') { // West
+            newY = positionY - 1;
+        } else {
+            System.out.println("Invalid direction!");
+            return false;
         }
 
         // Check if the next position is within bounds and open
@@ -78,12 +73,28 @@ public class MazeRunner {
     }
     // Turn the MazeRunner to the left
     public void turnLeft(){
-        // Code to turn the MazeRunner left will go here
+        if (direction == 'N') {
+            direction = 'W';
+        } else if (direction == 'E') {
+            direction = 'N';
+        } else if (direction == 'S') {
+            direction = 'E';
+        } else if (direction == 'W') {
+            direction = 'S';
+        }
     }
 
     // Turn the MazeRunner to the right
     public void turnRight() {
-        // Code to turn the MazeRunner right will go here
+        if (direction == 'N') {
+            direction = 'E';
+        } else if (direction == 'E') {
+            direction = 'S';
+        } else if (direction == 'S') {
+            direction = 'W';
+        } else if (direction == 'W') {
+            direction = 'N';
+        }
 
     }
 
