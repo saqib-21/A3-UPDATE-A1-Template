@@ -34,6 +34,9 @@ public class Main {
             logger.info("**** Maze Loaded Successfully:");
             maze.printMaze();
 
+
+            //////////////////////////////////////////Logic//////////////////////////////////////////
+
             // Find and log the entrance
             int[] entrance = maze.findEntrance();
             if (entrance != null) {
@@ -56,10 +59,13 @@ public class Main {
 
 
             // Create a MazeSolver object and solve the maze
-            MazeSolver solver = new StraightMazeSolver(maze, runner);
-            //MazeSolver solver = new RightHandMazeSolver(maze, runner);
+            //MazeSolver solver = new StraightMazeSolver(maze, runner);
+            MazeSolver solver = new RightHandMazeSolver(maze, runner);
             solver.solveMaze();
             logger.info("** End of Maze Runner");
+
+            //////////////////////////////////////////Logic//////////////////////////////////////////
+
 
         } catch (ParseException e) {
             logger.error("Failed to parse command line arguments", e);
