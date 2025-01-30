@@ -68,7 +68,6 @@ public class Maze {
             }
             System.out.println(); // Move to the next line after printing a row
         }
-        System.out.println("Number of rows: " + grid.length);
     }
 
     //method to get entrance of the maze

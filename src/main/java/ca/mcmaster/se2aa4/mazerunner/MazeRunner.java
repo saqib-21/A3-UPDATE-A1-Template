@@ -67,7 +67,7 @@ public class MazeRunner {
             positionY = newY;
             return true;
         } else {
-            System.out.println("Cannot move forward! Path is blocked.");
+            //System.out.println("Cannot move forward! Path is blocked.");
             return false;
         }
     }
