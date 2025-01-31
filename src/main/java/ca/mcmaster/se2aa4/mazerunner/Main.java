@@ -15,6 +15,8 @@ public class Main {
     public static void main(String[] args) {
         Options options = new Options();
         options.addOption("i", true, "input file");
+        options.addOption("p", true, "Path to validate");
+
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd;
@@ -52,6 +54,22 @@ public class Main {
             } else {
                 logger.warn("No exit found in the maze.");
             }
+            // Handle path verification if -p flag is provided
+            if (cmd.hasOption("p")) {
+                String[] pathArgs = cmd.getOptionValues("p");
+                String path = String.join(" ", pathArgs); // Join the path arguments into a single string
+                logger.info("**** Validating path: " + path);
+
+                PathValidator validator = new PathValidator(maze);
+                boolean isValid = validator.isValidPath(path);
+
+                if (isValid) {
+                    logger.info("correct path");
+                } else {
+                    logger.warn("incorrect path");
+                }
+                return; // Exit after validation
+            }
 
             // Create a MazeRunner object at the entrance 
             MazeRunner runner = new MazeRunner(entrance[0], entrance[1], 'E');
@@ -62,6 +80,7 @@ public class Main {
             //MazeSolver solver = new StraightMazeSolver(maze, runner);
             MazeSolver solver = new RightHandMazeSolver(maze, runner);
             solver.solveMaze();
+
             logger.info("** End of Maze Runner");
 
             //////////////////////////////////////////Logic//////////////////////////////////////////
