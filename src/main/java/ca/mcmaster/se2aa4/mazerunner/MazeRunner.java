@@ -56,7 +56,6 @@ public class MazeRunner {
         } else if (direction == 'W') { // West
             newY = positionY - 1;
         } else {
-            System.out.println("Invalid direction!");
             return false;
         }
 

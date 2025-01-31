@@ -1,10 +1,14 @@
 package ca.mcmaster.se2aa4.mazerunner;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Maze {
+    private static final Logger logger = LogManager.getLogger(Maze.class);
+
     private char[][] grid;
 
     // Constructor to initialize the maze grid
@@ -60,16 +64,20 @@ public class Maze {
         }
     }
 
-    // Method to print the maze grid
     public void printMaze() {
+        logger.info("**** Printing the Maze:");
         for (char[] row : grid) {
+            StringBuilder mazeLine = new StringBuilder();
             for (char cell : row) {
-                System.out.print(cell);
+                if (cell == '#') {
+                    mazeLine.append("#");
+                } else if (cell == ' ') {
+                    mazeLine.append(" ");
+                }
             }
-            System.out.println(); // Move to the next line after printing a row
+            logger.info(mazeLine.toString()); // Log the same output
         }
     }
-
     //method to get entrance of the maze
     public int[] findEntrance() {
         for (int i = 0; i < grid.length; i++) { // Loop through all rows

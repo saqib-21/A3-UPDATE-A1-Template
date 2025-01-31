@@ -54,6 +54,6 @@ public abstract class MazeSolver {
     // Ensures the last move is properly recorded at the end
     protected void finalizePath() {
         StoreMove();
-        System.out.println("Maze solved! Factorized Path: " + path.toString().trim());
+        System.out.println(path.toString().trim());
     }
 }

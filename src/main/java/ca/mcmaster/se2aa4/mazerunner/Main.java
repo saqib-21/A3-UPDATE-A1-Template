@@ -34,6 +34,7 @@ public class Main {
             // Use the Maze class to load and print the maze
             Maze maze = new Maze(inputFile);
             logger.info("**** Maze Loaded Successfully:");
+
             maze.printMaze();
 
 
@@ -54,22 +55,27 @@ public class Main {
             } else {
                 logger.warn("No exit found in the maze.");
             }
+
+
+
+            //=============================================path validation=============================================
             // Handle path verification if -p flag is provided
             if (cmd.hasOption("p")) {
-                String[] pathArgs = cmd.getOptionValues("p");
-                String path = String.join(" ", pathArgs); // Join the path arguments into a single string
+                String path = cmd.getOptionValue("p"); //p only takes one argument and that is the canonical path without spaces
                 logger.info("**** Validating path: " + path);
 
                 PathValidator validator = new PathValidator(maze);
                 boolean isValid = validator.isValidPath(path);
 
                 if (isValid) {
-                    logger.info("correct path");
+                    System.out.println("correct path"); 
                 } else {
-                    logger.warn("incorrect path");
+                    System.out.println("incorrect path"); 
                 }
                 return; // Exit after validation
             }
+             //=============================================path validation=============================================
+
 
             // Create a MazeRunner object at the entrance 
             MazeRunner runner = new MazeRunner(entrance[0], entrance[1], 'E');
@@ -77,7 +83,10 @@ public class Main {
 
 
             // Create a MazeSolver object and solve the maze
+            //mvp
             //MazeSolver solver = new StraightMazeSolver(maze, runner);
+
+
             MazeSolver solver = new RightHandMazeSolver(maze, runner);
             solver.solveMaze();
 

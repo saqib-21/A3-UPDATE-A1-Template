@@ -11,7 +11,6 @@ public class PathValidator extends MazeRunner {
     }
 
     public boolean isValidPath(String path) {
-        System.out.println("Validating path: " + path);
         char[][] grid = maze.getGrid();
 
         for (char move : path.toCharArray()) {

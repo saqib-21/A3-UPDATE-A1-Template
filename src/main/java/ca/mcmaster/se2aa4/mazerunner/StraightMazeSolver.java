@@ -14,7 +14,8 @@ public class StraightMazeSolver extends MazeSolver {
                 recordMove("F"); // Record the forward movement
             } else {
                 // If no forward movement is possible, stop
-                System.out.println("MazeRunner is blocked. Path so far: " + path.toString());
+                //ONLY FOR MVP
+                //System.out.println("MazeRunner is blocked. Path so far: " + path.toString());
                 break;
             }
         }
