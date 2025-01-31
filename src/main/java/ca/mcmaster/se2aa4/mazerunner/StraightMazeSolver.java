@@ -18,6 +18,7 @@ public class StraightMazeSolver extends MazeSolver {
                 break;
             }
         }
-        System.out.println("Maze solved! Path: " + path.toString());
+        finalizePath(); // Ensure last moves are processed
+
     }
 }

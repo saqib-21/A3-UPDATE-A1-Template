@@ -30,6 +30,6 @@ public class RightHandMazeSolver extends MazeSolver {
         }
 
 
-        System.out.println("Maze solved! Path: " + path.toString().trim());
+        finalizePath(); 
     }
 }

@@ -4,6 +4,8 @@ public abstract class MazeSolver {
     protected Maze maze;
     protected MazeRunner runner;
     protected StringBuilder path; // Tracks movement 
+    private String lastMove = "";
+    private int moveCount = 0;
 
     
 
@@ -26,8 +28,32 @@ public abstract class MazeSolver {
         return exit != null && x == exit[0] && y == exit[1];
     }
 
-    // Adds moves to path in canonical form
+
+    // Factorized move recording
     protected void recordMove(String move) {
-        path.append(move); // No factorization
+        if (move.equals(lastMove)) {
+            moveCount++; // Continue counting consecutive moves
+        } else {
+            StoreMove(); // Store the previous move if a new one starts
+            lastMove = move;
+            moveCount = 1;
+        }
+    }
+
+    // Append the stored move sequence to the path
+    private void StoreMove() {
+        if (moveCount > 0) {
+            if (moveCount == 1) {
+                path.append(lastMove).append(" ");
+            } else {
+                path.append(moveCount).append(lastMove).append(" ");
+            }
+        }
+    }
+
+    // Ensures the last move is properly recorded at the end
+    protected void finalizePath() {
+        StoreMove();
+        System.out.println("Maze solved! Factorized Path: " + path.toString().trim());
     }
 }
