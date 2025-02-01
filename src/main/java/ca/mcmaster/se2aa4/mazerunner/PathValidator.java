@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class PathValidator extends MazeRunner {
 
-    private Maze maze;
+    private final Maze maze;
 
     public PathValidator(Maze maze) {
         // Call MazeRunner constructor with initial position & facing direction
