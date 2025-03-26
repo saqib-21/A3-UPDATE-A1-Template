@@ -46,6 +46,7 @@ public class Main {
                 logger.info("Maze entrance found at index  [" + entrance[0] + "," + entrance[1]+ "]");
             } else {
                 logger.warn("No entrance found in the maze.");
+                return;
             }
 
             // Find and log the exit
@@ -54,6 +55,7 @@ public class Main {
                 logger.info("Maze exit found at index [" + exit[0] + "," + exit[1] + "]");
             } else {
                 logger.warn("No exit found in the maze.");
+                return;
             }
 
 
@@ -80,7 +82,7 @@ public class Main {
 
             // Create a MazeRunner object at the entrance 
             MazeRunner runner = new MazeRunner(entrance[0], entrance[1], 'E');
-            logger.info("**** Maze Runner Created at entrance [" + entrance[0] + "," + entrance[1] + "] facing East");
+            logger.info("**** Maze Runner Created at entrance (y,x) [" + entrance[0] + "," + entrance[1] + "] facing East");
 
 
             // Create a MazeSolver object and solve the maze

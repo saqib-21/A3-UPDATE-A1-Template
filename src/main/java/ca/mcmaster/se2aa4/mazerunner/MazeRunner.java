@@ -2,24 +2,24 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class MazeRunner {
     // Attributes
-    private int positionX; // X-coordinate of the MazeRunner
-    private int positionY; // Y-coordinate of the MazeRunner
+    private int PositionY; // X-coordinate of the MazeRunner
+    private int PositionX; // Y-coordinate of the MazeRunner
     private char direction; // Direction the MazeRunner is facing ('N', 'E', 'S', 'W')
 
     // Constructor
-    public MazeRunner(int positionX, int positionY, char direction) {
-        this.positionX = positionX;
-        this.positionY = positionY;
+    public MazeRunner(int PositionY, int PositionX, char direction) {
+        this.PositionY = PositionY;
+        this.PositionX = PositionX;
         this.direction = direction;
     }
 
     // Getters
-    public int getPositionX() {
-        return positionX;
+    public int getPositionY() {
+        return PositionY;
     }
 
-    public int getPositionY() {
-        return positionY;
+    public int getPositionX() {
+        return PositionX;
     }
 
     public char getDirection() {
@@ -27,43 +27,42 @@ public class MazeRunner {
     }
 
     // Setters
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
+    public void setPositionY(int PositionY) {
+        this.PositionY = PositionY;
     }
 
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
+    public void setPositionX(int PositionX) {
+        this.PositionX = PositionX;
     }
 
     public void setDirection(char direction) {
         this.direction = direction;
     }
 
-    // Methods
 
     // Move the MazeRunner forward based on its current direction
     public boolean moveForward(char[][] grid) {
-        int newX = positionX;
-        int newY = positionY;
+        int newY = PositionY;
+        int newX = PositionX;
 
         // Determine the next position based on the current direction
         if (direction == 'N') { // North
-            newX = positionX - 1;
+            newY = PositionY - 1;
         } else if (direction == 'E') { // East
-            newY = positionY + 1;
+            newX = PositionX + 1;
         } else if (direction == 'S') { // South
-            newX = positionX + 1;
+            newY = PositionY + 1;
         } else if (direction == 'W') { // West
-            newY = positionY - 1;
+            newX = PositionX - 1;
         } else {
             return false;
         }
 
         // Check if the next position is within bounds and open
-        if (newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length && grid[newX][newY] == ' ') {
+        if (newY >= 0 && newY < grid.length && newX >= 0 && newX < grid[0].length && grid[newY][newX] == ' ') {
             // Update position
-            positionX = newX;
-            positionY = newY;
+            PositionY = newY;
+            PositionX = newX;
             return true;
         } else {
             //System.out.println("Cannot move forward! Path is blocked.");
@@ -99,6 +98,6 @@ public class MazeRunner {
 
     // For debugging: Get the MazeRunner's current state
     public String getState() {
-        return "Position: (" + positionX + ", " + positionY + "), Direction: " + direction;
+        return "Position: (" + PositionY + ", " + PositionX + "), Direction: " + direction;
     }
 }

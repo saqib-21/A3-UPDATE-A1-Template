@@ -21,11 +21,11 @@ public abstract class MazeSolver {
 
     // Check if the MazeRunner is at the exit
     protected boolean isAtExit() {
-        int x = runner.getPositionX();
         int y = runner.getPositionY();
+        int x = runner.getPositionX();
         int[] exit = maze.findExit();
 
-        return exit != null && x == exit[0] && y == exit[1];
+        return exit != null && y == exit[0] && x == exit[1];
     }
 
 
@@ -44,9 +44,9 @@ public abstract class MazeSolver {
     private void StoreMove() {
         if (moveCount > 0) {
             if (moveCount == 1) {
-                path.append(lastMove).append(" ");
+                path.append(lastMove).append("");
             } else {
-                path.append(moveCount).append(lastMove).append(" ");
+                path.append(moveCount).append(lastMove).append("");
             }
         }
     }
