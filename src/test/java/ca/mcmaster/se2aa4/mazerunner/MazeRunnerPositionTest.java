@@ -111,4 +111,59 @@ public class MazeRunnerPositionTest {
         assertEquals(0, runner.getPositionX());
     }
 
+    @Test
+    public void testRightHandMazeSolver() {
+        String filePath = "examples\\tiny.maz.txt";
+        Maze maze = new Maze(filePath);
+        int[] entrance = maze.findEntrance();
+        int[] exit = maze.findExit();
+
+        // Initialize the MazeRunner at the entrance
+        MazeRunner runner = new MazeRunner(entrance[0], entrance[1], 'E');
+
+        // Create the RightHandMazeSolver
+        RightHandMazeSolver solver = new RightHandMazeSolver(maze, runner);
+
+        // Solve the maze
+        solver.solveMaze();
+
+        // Assert that the runner reached the exit
+        assertEquals(exit[0], runner.getPositionY());
+        assertEquals(exit[1], runner.getPositionX());
 }
+
+@Test
+public void testPathValidation() {
+    String filePath = "examples\\tiny.maz.txt";
+    Maze maze = new Maze(filePath);
+
+    // Test a path with invalid characters
+    PathValidator validator1 = new PathValidator(maze);
+    String invalidCharPath = "FFXFF";
+    assertFalse(validator1.isValidPath(invalidCharPath), "The path should be invalid due to invalid characters.");
+
+    // Test a path that's too long
+    PathValidator validator2 = new PathValidator(maze);
+    String invalidPath = "FFFFFFFFFFFFF";
+    assertFalse(validator2.isValidPath(invalidPath), "The path should be invalid because it goes out of bounds.");
+
+    // Test an empty path
+    PathValidator validator3 = new PathValidator(maze);
+    String emptyPath = "";
+    assertFalse(validator3.isValidPath(emptyPath), "The path should be invalid as it doesn't lead to the exit.");
+
+    // Test valid canonical path
+    PathValidator validator4 = new PathValidator(maze);
+    String canonicalValidPath = "FFFFFLLFFRFFRFFLLFFRFFRFFF";
+    assertTrue(validator4.isValidPath(canonicalValidPath), "The path should be valid.");
+
+    // Test a valid compressed path
+    PathValidator validator5 = new PathValidator(maze);
+    String validPath = "5F2L2FR2FR2F2L2FR2FR3F";
+    assertTrue(validator5.isValidPath(validPath), "The path should be valid.");
+}
+
+
+}
+
+

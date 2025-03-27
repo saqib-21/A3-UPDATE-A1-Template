@@ -44,9 +44,9 @@ public abstract class MazeSolver {
     private void StoreMove() {
         if (moveCount > 0) {
             if (moveCount == 1) {
-                path.append(lastMove).append("");
+                path.append(lastMove).append(" ");
             } else {
-                path.append(moveCount).append(lastMove).append("");
+                path.append(moveCount).append(lastMove).append(" ");
             }
         }
     }
