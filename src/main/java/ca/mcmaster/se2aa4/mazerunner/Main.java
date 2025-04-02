@@ -63,6 +63,7 @@ public class Main {
             //=============================================path validation=============================================
             // Handle path verification if -p flag is provided
             if (cmd.hasOption("p")) {
+                //THIS -P TAKES ONLY THE FIRST ARGUMENT
                 String path = cmd.getOptionValue("p"); //p only takes one argument and that is the canonical path without spaces
                 logger.info("**** Path Validator Created at entrance [" + entrance[0] + "," + entrance[1] + "] facing East");
                 logger.info("**** Validating path: " + path);

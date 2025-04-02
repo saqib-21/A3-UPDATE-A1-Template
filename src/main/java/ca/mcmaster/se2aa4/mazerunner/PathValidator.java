@@ -12,6 +12,7 @@ public class PathValidator extends MazeRunner {
 
     
     public boolean isValidPath(String path) {
+        path = path.replaceAll("\\s+", ""); // Remove all spaces
         char[][] grid = maze.getGrid();
         int i = 0;
     
