@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,11 +15,11 @@ public class MazeRunnerNavigationTest {
     @BeforeEach
     public void setUp() {
         // Initialize shared objects before each test
-        maze = new Maze("examples\\tiny.maz.txt");
+        maze = new Maze("examples" + File.separator + "tiny.maz.txt");
     }
 
     @Test
-    public void testMoveForwardSuccess() {
+    public void testMoveEastForwardSuccess() {
         int[] entrance = maze.findEntrance();
         MazeRunner runner = new MazeRunner(entrance[0], entrance[1], 'E');
         boolean moved = runner.moveForward(maze.getGrid());

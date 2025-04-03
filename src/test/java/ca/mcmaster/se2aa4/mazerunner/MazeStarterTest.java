@@ -22,7 +22,7 @@ public class MazeStarterTest {
     @Test
     public void testMazeLoadingForAllMazes() {
         for (String mazeFile : mazeFiles) {
-            Maze maze = new Maze("examples\\" + mazeFile);
+            Maze maze = new Maze("examples" + File.separator + mazeFile);
             assertNotNull(maze, "Maze should not be null for file: " + mazeFile);
             assertNotNull(maze.getGrid(), "Maze grid should not be null for file: " + mazeFile);
         }
@@ -31,7 +31,7 @@ public class MazeStarterTest {
     @Test
     public void testMazeEntranceForAllMazes() {
         for (String mazeFile : mazeFiles) {
-            Maze maze = new Maze("examples\\" + mazeFile);
+            Maze maze = new Maze("examples" + File.separator + mazeFile);
             int[] entrance = maze.findEntrance();
             assertNotNull(entrance, "Entrance should not be null for file: " + mazeFile);
             assertEquals(2, entrance.length, "Entrance should have 2 coordinates for file: " + mazeFile);
@@ -43,7 +43,7 @@ public class MazeStarterTest {
     @Test
     public void testMazeExitForAllMazes() {
         for (String mazeFile : mazeFiles) {
-            Maze maze = new Maze("examples\\" + mazeFile);
+            Maze maze = new Maze("examples" + File.separator + mazeFile);
             int[] exit = maze.findExit();
             assertNotNull(exit, "Exit should not be null for file: " + mazeFile);
             assertEquals(2, exit.length, "Exit should have 2 coordinates for file: " + mazeFile);
@@ -55,7 +55,7 @@ public class MazeStarterTest {
     @Test
     public void testRunnerStartsAtEntranceForAllMazes() {
         for (String mazeFile : mazeFiles) {
-            Maze maze = new Maze("examples\\" + mazeFile);
+            Maze maze = new Maze("examples" + File.separator + mazeFile);
             int[] entrance = maze.findEntrance();
             MazeRunner runner = new MazeRunner(entrance[0], entrance[1], 'E');
             assertEquals(entrance[0], runner.getPositionY(), "Runner Y position should match entrance for file: " + mazeFile);

@@ -22,7 +22,7 @@ public class MazeSolutionTest {
     @Test
     public void testAllMazesWithRightHandSolver() {
         for (String mazeFile : mazeFiles) {
-            Maze maze = new Maze("examples\\" + mazeFile);
+            Maze maze = new Maze("examples" + File.separator + mazeFile);
 
             int[] entrance = maze.findEntrance();
             int[] exit = maze.findExit();
@@ -42,8 +42,8 @@ public class MazeSolutionTest {
     }
 
     @Test
-    public void testPathValidation() {
-        String filePath = "examples\\tiny.maz.txt";
+    public void testTinyPathValidation() {
+        String filePath = "examples" + File.separator + "tiny.maz.txt";
         Maze maze = new Maze(filePath);
 
         // Test a path with invalid characters
@@ -78,9 +78,9 @@ public class MazeSolutionTest {
 
 
     @Test
-    public void testSolverOutputWithPathValidator() {
+    public void testRHSolverOutputWithPathValidator() {
     for (String mazeFile : mazeFiles) {
-        Maze maze = new Maze("examples\\" + mazeFile);
+        Maze maze = new Maze("examples" + File.separator + mazeFile);
 
         int[] entrance = maze.findEntrance();
         int[] exit = maze.findExit();
