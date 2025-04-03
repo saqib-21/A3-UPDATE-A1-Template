@@ -13,7 +13,6 @@ public class PathValidator extends MazeRunner {
     
     public boolean isValidPath(String path) {
         path = path.replaceAll("\\s+", ""); // Remove all spaces
-        char[][] grid = maze.getGrid();
         int i = 0;
     
         while (i < path.length()) {
@@ -30,21 +29,23 @@ public class PathValidator extends MazeRunner {
     
             if (i < path.length()) {
                 char move = path.charAt(i);
-    
+                MovementCommand command = null;
+
                 if (move == 'F') {
-                    for (int j = 0; j < repeat; j++) {
-                        if (!moveForward(grid)) {
-                            return false; // Invalid move (e.g., out of bounds or hits a wall)
-                        }
-                    }
+                    command = new ForwardCommand(this, maze);
                 } else if (move == 'L') {
-                    for (int j = 0; j < repeat; j++) turnLeft();
+                    command = new TurnLeftCommand(this);
                 } else if (move == 'R') {
-                    for (int j = 0; j < repeat; j++) turnRight();
+                    command = new TurnRightCommand(this);
                 } else {
-                    return false; // Invalid move character
+                    return false;
                 }
-    
+
+                for (int j = 0; j < repeat; j++) {
+                    if (!executeCommand(command)) {
+                        return false;
+                    }
+                }
                 i++; // Move to next character
             }
         }

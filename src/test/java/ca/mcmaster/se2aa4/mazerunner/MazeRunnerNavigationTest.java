@@ -41,15 +41,24 @@ public class MazeRunnerNavigationTest {
     @Test
     public void testTurnLeftAndRight() {
         MazeRunner runner = new MazeRunner(5, 0, 'E');
-        runner.turnLeft(); // Should become 'N'
+        MovementCommand turnLeft = new TurnLeftCommand(runner);
+        MovementCommand turnRight = new TurnRightCommand(runner);
+    
+        // Execute turnLeft and check direction
+        runner.executeCommand(turnLeft); // Should become 'N'
         assertEquals('N', runner.getDirection());
-        runner.turnLeft(); // Should become 'W'
+    
+        runner.executeCommand(turnLeft); // Should become 'W'
         assertEquals('W', runner.getDirection());
-        runner.turnRight(); // Should become 'N'
+    
+        // Execute turnRight and check direction
+        runner.executeCommand(turnRight); // Should become 'N'
         assertEquals('N', runner.getDirection());
-        runner.turnRight(); // Should become 'E'
+    
+        runner.executeCommand(turnRight); // Should become 'E'
         assertEquals('E', runner.getDirection());
-        runner.turnRight(); // Should become 'S'
+    
+        runner.executeCommand(turnRight); // Should become 'S'
         assertEquals('S', runner.getDirection());
     }
 

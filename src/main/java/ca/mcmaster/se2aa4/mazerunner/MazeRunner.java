@@ -39,8 +39,17 @@ public class MazeRunner {
         this.direction = direction;
     }
 
+    // New method to execute commands
+    public boolean executeCommand(MovementCommand command) {
+        return command.execute();
+    }
 
-    // Move the MazeRunner forward based on its current direction
+    public void undoCommand(MovementCommand command) {
+        command.undo();
+    }
+
+
+    // Move the MazeRunner forward based on its current direction (used by MoveForwardCommand)
     public boolean moveForward(char[][] grid) {
         int newY = PositionY;
         int newX = PositionX;
@@ -69,32 +78,8 @@ public class MazeRunner {
             return false;
         }
     }
-    // Turn the MazeRunner to the left
-    public void turnLeft(){
-        if (direction == 'N') {
-            direction = 'W';
-        } else if (direction == 'E') {
-            direction = 'N';
-        } else if (direction == 'S') {
-            direction = 'E';
-        } else if (direction == 'W') {
-            direction = 'S';
-        }
-    }
+    
 
-    // Turn the MazeRunner to the right
-    public void turnRight() {
-        if (direction == 'N') {
-            direction = 'E';
-        } else if (direction == 'E') {
-            direction = 'S';
-        } else if (direction == 'S') {
-            direction = 'W';
-        } else if (direction == 'W') {
-            direction = 'N';
-        }
-
-    }
 
     // For debugging: Get the MazeRunner's current state
     public String getState() {
