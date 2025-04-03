@@ -92,7 +92,7 @@ public class Main {
 
 
             MazeSolver solver = new RightHandMazeSolver(maze, runner);
-            solver.solveMaze();
+            System.out.println(solver.solveMaze());
 
             logger.info("** End of Maze Runner");
 

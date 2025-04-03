@@ -17,7 +17,7 @@ public abstract class MazeSolver {
     }
 
     // Abstract method to solve the maze
-    public abstract void solveMaze();
+    public abstract String solveMaze();
 
     // Check if the MazeRunner is at the exit
     protected boolean isAtExit() {
@@ -52,8 +52,8 @@ public abstract class MazeSolver {
     }
 
     // Ensures the last move is properly recorded at the end
-    protected void finalizePath() {
+    protected String finalizePath() {
         StoreMove();
-        System.out.println(path.toString().trim());
+        return path.toString().trim(); // Return the path as a string
     }
 }

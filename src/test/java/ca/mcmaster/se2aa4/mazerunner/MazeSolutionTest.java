@@ -34,6 +34,8 @@ public class MazeSolutionTest {
 
             //solve the maze
             solver.solveMaze();
+
+            // Check if the runner has reached the exit
             assertEquals(exit[0], runner.getPositionY(), "Failed for maze: " + mazeFile);
             assertEquals(exit[1], runner.getPositionX(), "Failed for maze: " + mazeFile);
         }
@@ -73,6 +75,33 @@ public class MazeSolutionTest {
         String validPath2 = "5F 2L 2F R 2F R 2F 2L 2F R 2F R 3F";
         assertTrue(validator6.isValidPath(validPath2), "The path should be valid.");
     }
+
+
+    @Test
+    public void testSolverOutputWithPathValidator() {
+    for (String mazeFile : mazeFiles) {
+        Maze maze = new Maze("examples\\" + mazeFile);
+
+        int[] entrance = maze.findEntrance();
+        int[] exit = maze.findExit();
+
+        // Initialize the MazeRunner at the entrance
+        MazeRunner runner = new MazeRunner(entrance[0], entrance[1], 'E');
+        // Create the RightHandMazeSolver
+        RightHandMazeSolver solver = new RightHandMazeSolver(maze, runner);
+
+        // Solve the maze and get the path
+        String solverPath = solver.solveMaze();
+
+        // Validate the solver's path using PathValidator
+        PathValidator validator = new PathValidator(maze);
+        assertTrue(validator.isValidPath(solverPath), "The solver's path should be valid for maze: " + mazeFile);
+
+        // Ensure the runner ends at the exit
+        assertEquals(exit[0], runner.getPositionY(), "Runner Y position should match exit for maze: " + mazeFile);
+        assertEquals(exit[1], runner.getPositionX(), "Runner X position should match exit for maze: " + mazeFile);
+    }
+}
 
 }
 

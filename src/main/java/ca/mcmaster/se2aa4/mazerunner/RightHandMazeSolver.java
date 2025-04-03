@@ -7,7 +7,7 @@ public class RightHandMazeSolver extends MazeSolver {
     }
 
     @Override
-    public void solveMaze() {
+    public String solveMaze() {
         while (!isAtExit()) {
             // 1. If there’s an open path to the right, turn right and move
             runner.turnRight();
@@ -30,6 +30,6 @@ public class RightHandMazeSolver extends MazeSolver {
         }
 
 
-        finalizePath(); 
+        return finalizePath(); 
     }
 }

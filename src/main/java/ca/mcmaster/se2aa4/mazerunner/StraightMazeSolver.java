@@ -7,7 +7,7 @@ public class StraightMazeSolver extends MazeSolver {
     }
 
     @Override
-    public void solveMaze() {
+    public String solveMaze() {
         while (!isAtExit()) {
             // Move forward if possible
             if (runner.moveForward(maze.getGrid())) {
@@ -19,7 +19,7 @@ public class StraightMazeSolver extends MazeSolver {
                 break;
             }
         }
-        finalizePath(); // Ensure last moves are processed
+        return finalizePath(); // Ensure last moves are processed
 
     }
 }
