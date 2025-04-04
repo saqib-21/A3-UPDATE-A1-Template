@@ -80,6 +80,7 @@ public class Main {
             }
              //=============================================path validation=============================================
 
+            //////////////////////////////////////////Logic//////////////////////////////////////////
 
             // Create a MazeRunner object at the entrance 
             MazeRunner runner = new MazeRunner(entrance[0], entrance[1], 'E');
@@ -90,8 +91,9 @@ public class Main {
             //mvp
             //MazeSolver solver = new StraightMazeSolver(maze, runner);
 
+            MazeSolverFactory factory = new MazeSolverFactory();
+            MazeSolver solver = factory.createSolver("RightHand", maze, runner);
 
-            MazeSolver solver = new RightHandMazeSolver(maze, runner);
             System.out.println(solver.solveMaze());
 
             logger.info("** End of Maze Runner");

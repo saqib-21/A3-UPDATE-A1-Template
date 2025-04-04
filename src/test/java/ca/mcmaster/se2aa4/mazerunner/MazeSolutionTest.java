@@ -4,6 +4,7 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -102,6 +103,63 @@ public class MazeSolutionTest {
         assertEquals(exit[1], runner.getPositionX(), "Runner X position should match exit for maze: " + mazeFile);
     }
 }
+
+    @Test
+    public void testMazeSolverFactory() {
+        for (String mazeFile : mazeFiles) {
+            Maze maze = new Maze("examples" + File.separator + mazeFile);
+            int[] entrance = maze.findEntrance();
+            int[] exit = maze.findExit();
+
+            // Initialize the MazeRunner at the entrance
+            MazeRunner rightRunner = new MazeRunner(entrance[0], entrance[1], 'E');
+            MazeRunner straightRunner = new MazeRunner(entrance[0], entrance[1], 'E');
+            MazeRunner defaultRunner = new MazeRunner(entrance[0], entrance[1], 'E');
+
+            MazeSolverFactory factory = new MazeSolverFactory();
+
+            // Test RightHandMazeSolver creation
+            MazeSolver rightHandSolver = factory.createSolver("RightHand", maze, rightRunner);
+            assertTrue(rightHandSolver instanceof RightHandMazeSolver, "Factory should create a RightHandMazeSolver for strategy: RightHand");
+            //solve the maze
+            rightHandSolver.solveMaze();
+
+            // Check if the runner has reached the exit
+            assertEquals(exit[0], rightRunner.getPositionY(), "Failed for maze: " + mazeFile);
+            assertEquals(exit[1], rightRunner.getPositionX(), "Failed for maze: " + mazeFile);
+
+
+            // Test StraightMazeSolver creation (if implemented)
+            MazeSolver straightSolver = MazeSolverFactory.createSolver("Straight", maze, straightRunner);
+            assertTrue(straightSolver instanceof StraightMazeSolver, "Factory should create a StraightMazeSolver for strategy: Straight");
+
+            straightSolver.solveMaze();
+            // Check if the runner has reached the exit
+            if (mazeFile.equals("straight.maz.txt")) {
+                assertEquals(exit[0], straightRunner.getPositionY(), "Failed for maze: " + mazeFile);
+                assertEquals(exit[1], straightRunner.getPositionX(), "Failed for maze: " + mazeFile);
+            } else {
+                // For other mazes, check that the runner is not at the exit
+                assertNotEquals(exit[0], straightRunner.getPositionY(), "Failed for maze: " + mazeFile);
+                assertNotEquals(exit[1], straightRunner.getPositionX(), "Failed for maze: " + mazeFile);
+            }
+
+
+     
+            // Test default solver creation for unknown strategy
+            MazeSolver defaultSolver = MazeSolverFactory.createSolver("Unknown", maze, defaultRunner);
+            assertTrue(defaultSolver instanceof RightHandMazeSolver, "Factory should default to RightHandMazeSolver for unknown strategy");
+            //solve the maze
+            defaultSolver.solveMaze();
+
+            // Check if the runner has reached the exit
+            assertEquals(exit[0], defaultRunner.getPositionY(), "Failed for maze: " + mazeFile);
+            assertEquals(exit[1], defaultRunner.getPositionX(), "Failed for maze: " + mazeFile);
+        }
+    }
+
+
+
 
 }
 
