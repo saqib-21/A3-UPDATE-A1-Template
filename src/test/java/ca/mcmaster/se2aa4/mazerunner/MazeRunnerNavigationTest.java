@@ -41,26 +41,26 @@ public class MazeRunnerNavigationTest {
     @Test
     public void testTurnLeftAndRight() {
         MazeRunner runner = new MazeRunner(5, 0, 'E');
-        MovementCommand turnLeft = new TurnLeftCommand(runner);
-        MovementCommand turnRight = new TurnRightCommand(runner);
-    
-        // Execute turnLeft and check direction
-        runner.executeCommand(turnLeft); // Should become 'N'
-        assertEquals('N', runner.getDirection());
-    
-        runner.executeCommand(turnLeft); // Should become 'W'
-        assertEquals('W', runner.getDirection());
-    
-        // Execute turnRight and check direction
-        runner.executeCommand(turnRight); // Should become 'N'
-        assertEquals('N', runner.getDirection());
-    
-        runner.executeCommand(turnRight); // Should become 'E'
-        assertEquals('E', runner.getDirection());
-    
-        runner.executeCommand(turnRight); // Should become 'S'
-        assertEquals('S', runner.getDirection());
-    }
+    MovementCommand turnLeft = new TurnLeftCommand(runner);
+    MovementCommand turnRight = new TurnRightCommand(runner);
+
+    // Execute turnLeft and check direction
+    runner.executeCommand(turnLeft); // Should become 'N'
+    assertEquals('N', runner.getDirection());
+
+    runner.executeCommand(turnLeft); // Should become 'W'
+    assertEquals('W', runner.getDirection());
+
+    // Execute turnRight and check direction
+    runner.executeCommand(turnRight); // Should become 'N'
+    assertEquals('N', runner.getDirection());
+
+    runner.executeCommand(turnRight); // Should become 'E'
+    assertEquals('E', runner.getDirection());
+
+    runner.executeCommand(turnRight); // Should become 'S'
+    assertEquals('S', runner.getDirection());
+}
 
     @Test
     public void testOutOfBoundsMovement() {
